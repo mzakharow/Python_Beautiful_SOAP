@@ -1,0 +1,17 @@
+import requests, bs4
+
+source = requests.get('https://sinoptik.com.ru/погода-москва')
+bs = bs4.BeautifulSoup(source.text, "html.parser")
+p3 = bs.select('.temperature .p3')
+weather_1 = p3[0].getText()
+p4 = bs.select('.temperature .p4')
+weather_2 = p4[0].getText()
+p5 = bs.select('.temperature .p5')
+weather_3 = p5[0].getText()
+p6 = bs.select('.temperature .p6')
+weather_4 = p6[0].getText()
+print('Утром :' + weather_1 + ' ' + weather_2)
+print('Днём :' + weather_3 + ' ' + weather_4)
+p = bs.select('.rSide .description')
+pogoda = p[0].getText()
+print(pogoda.strip())
